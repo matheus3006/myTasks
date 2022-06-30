@@ -9,22 +9,45 @@ import {
   SafeAreaView,
 } from 'react-native';
 
+interface Task {
+  id: string;
+  title: string;
+}
+
 export const Home = () => {
+  const [newTask, setNewTask] = React.useState('');
+  const [tasks, setTasks] = React.useState<Task[]>([]);
+
+  const handleAddTask = () => {
+    const data = {
+      id: String(new Date().getTime()),
+      title: newTask ? newTask : 'Task empty',
+    };
+
+    setTasks([...tasks, data]);
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <Text style={styles.title}>Welcome Dev</Text>
 
         <TextInput
+          onChangeText={setNewTask}
           placeholderTextColor="#444"
           placeholder="Nova Tarefa..."
           style={styles.input}
         />
-        <TouchableOpacity activeOpacity={0.8} style={styles.button}>
+        <TouchableOpacity
+          onPress={handleAddTask}
+          activeOpacity={0.8}
+          style={styles.button}>
           <Text style={styles.textButton}>Adicionar</Text>
         </TouchableOpacity>
 
         <Text style={styles.titleTasks}>Minhas tarefas</Text>
+
+        <Text style={{color: '#fff'}}>{newTask}</Text>
       </View>
     </SafeAreaView>
   );
