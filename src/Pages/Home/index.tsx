@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, Text, TextInput, StyleSheet, SafeAreaView} from 'react-native';
+import {
+  Platform,
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  SafeAreaView,
+} from 'react-native';
 
 export const Home = () => {
   return (
@@ -34,7 +41,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#29292e',
     color: '#f1f1f1',
     fontSize: 18,
-    padding: 15,
+    padding: Platform.OS === 'ios' ? 15 : 12,
     marginTop: 30,
     borderRadius: 7,
   },
