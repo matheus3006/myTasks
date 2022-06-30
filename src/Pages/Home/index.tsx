@@ -4,6 +4,7 @@ import {
   View,
   Text,
   TextInput,
+  TouchableOpacity,
   StyleSheet,
   SafeAreaView,
 } from 'react-native';
@@ -15,6 +16,9 @@ export const Home = () => {
         <Text style={styles.title}>Welcome Dev</Text>
 
         <TextInput style={styles.input} />
+        <TouchableOpacity activeOpacity={0.8} style={styles.button}>
+          <Text style={styles.textButton}>Adicionar</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -44,5 +48,17 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 15 : 12,
     marginTop: 30,
     borderRadius: 7,
+  },
+  button: {
+    backgroundColor: '#eba417',
+    padding: 15,
+    borderRadius: 7,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  textButton: {
+    color: '#121214',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
