@@ -15,7 +15,11 @@ export const Home = () => {
       <View style={styles.container}>
         <Text style={styles.title}>Welcome Dev</Text>
 
-        <TextInput style={styles.input} />
+        <TextInput
+          placeholderTextColor="#444"
+          placeholder="Nova Tarefa..."
+          style={styles.input}
+        />
         <TouchableOpacity activeOpacity={0.8} style={styles.button}>
           <Text style={styles.textButton}>Adicionar</Text>
         </TouchableOpacity>
