@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   SafeAreaView,
+  Button,
 } from 'react-native';
 
 interface Task {
@@ -45,9 +46,14 @@ export const Home = () => {
           <Text style={styles.textButton}>Adicionar</Text>
         </TouchableOpacity>
 
-        <Text style={styles.titleTasks}>Minhas tarefas</Text>
-
+        <Text style={styles.titleTasks}> Minhas tarefas</Text>
         <Text style={{color: '#fff'}}>{newTask}</Text>
+
+        {tasks.map(task => (
+          <TouchableOpacity key={task.id} style={styles.buttonTask}>
+            <Text style={styles.titleTask}> {task.title} </Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </SafeAreaView>
   );
@@ -94,6 +100,19 @@ const styles = StyleSheet.create({
   textButton: {
     color: '#121214',
     fontSize: 18,
+    fontWeight: 'bold',
+  },
+
+  buttonTask: {
+    backgroundColor: '#29292e',
+    padding: 10,
+    marginTop: 10,
+    borderRadius: 50,
+    alignItems: 'center',
+  },
+  titleTask: {
+    color: '#f1f1f1',
+    fontSize: 20,
     fontWeight: 'bold',
   },
 });
