@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   FlatList,
 } from 'react-native';
+import {TaskList} from '../../components/Tasks';
 
 interface Task {
   id: string;
@@ -49,15 +50,7 @@ export const Home = () => {
         <Text style={styles.titleTasks}> Minhas tarefas</Text>
         <Text style={{color: '#fff'}}>{newTask}</Text>
 
-        <FlatList
-          data={tasks}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => (
-            <TouchableOpacity style={styles.buttonTask}>
-              <Text style={styles.titleTask}> {item.title} </Text>
-            </TouchableOpacity>
-          )}
-        />
+        <TaskList tasks={tasks} />
       </View>
     </SafeAreaView>
   );
