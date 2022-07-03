@@ -1,12 +1,12 @@
 import React from 'react';
 import {Home} from './src/Pages/Home';
-import {TaskContext} from './src/TaskContext';
+import {TaskProvider} from './src/Context/TaskContext';
 
 const App = () => {
   return (
-    <TaskContext.Provider value={{id: '1', title: 'task01'}}>
+    <TaskProvider>
       <Home />
-    </TaskContext.Provider>
+    </TaskProvider>
   );
 };
 
