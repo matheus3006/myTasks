@@ -1,6 +1,6 @@
 import React from 'react';
 import {Home} from './src/Pages/Home';
-import { TaskContext } from './src/TaskContext';
+import {TaskContext} from './src/TaskContext';
 
 const App = () => {
   return (
