@@ -4,9 +4,14 @@ interface IProps {
   children: React.ReactElement;
 }
 
-export interface ITaskContext {
+export interface ITask {
   id: string;
   title: string;
+}
+
+export interface ITaskContext {
+  tasks: ITask[];
+  addTask(task: ITask): void;
 }
 
 export const TaskContext = React.createContext<ITaskContext>(
@@ -14,8 +19,11 @@ export const TaskContext = React.createContext<ITaskContext>(
 );
 
 export const TaskProvider: React.FunctionComponent<IProps> = ({children}) => {
+  const addTask = (task: ITask) => {};
+
+  const tasks = [{id: '1', title: 'Task01'}];
   return (
-    <TaskContext.Provider value={{id: '1', title: 'task01'}}>
+    <TaskContext.Provider value={{tasks, addTask}}>
       {children}
     </TaskContext.Provider>
   );
