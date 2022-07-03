@@ -1,13 +1,13 @@
 import React from 'react';
 import {FlatList, TouchableOpacity, StyleSheet, Text} from 'react-native';
-import {ITaskContext, TaskContext} from '../../Context/TaskContext';
+import {ITask, TaskContext} from '../../Context/TaskContext';
 
 export const TaskList = () => {
-  const tasks = React.useContext(TaskContext);
+  const {tasks} = React.useContext(TaskContext);
 
   return (
     <FlatList
-      data={tasks as unknown as ITaskContext[]}
+      data={tasks as unknown as ITask[]}
       keyExtractor={item => item.id}
       renderItem={({item}) => (
         <TouchableOpacity style={styles.buttonTask}>
