@@ -10,11 +10,11 @@ import {
   FlatList,
 } from 'react-native';
 import {TaskList} from '../../components/Tasks';
-import {TaskContext} from '../../Context/TaskContext';
+import {useTaskList} from '../../Context/TaskContext';
 
 export const Home = () => {
   const [newTask, setNewTask] = React.useState('');
-  const {addTask} = React.useContext(TaskContext);
+  const {addTask} = useTaskList();
 
   const handleAddTask = () => {
     const data = {
