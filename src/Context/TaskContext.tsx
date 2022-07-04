@@ -15,6 +15,7 @@ export interface ITask {
 export interface ITaskContext {
   tasks: ITask[];
   addTask(task: ITask): void;
+  removeTask(id: string): void;
 }
 
 export const TaskContext = React.createContext<ITaskContext>(
@@ -44,8 +45,14 @@ export const TaskProvider: React.FunctionComponent<IProps> = ({children}) => {
     }
   };
 
+  const removeTask = async (id: string) => {
+    const newTaskList = data.filter(task => task.id !== id);
+    setData(newTaskList);
+    await AsyncStorage.setItem(taskData, JSON.stringify(newTaskList));
+  };
+
   return (
-    <TaskContext.Provider value={{tasks: data, addTask}}>
+    <TaskContext.Provider value={{tasks: data, addTask, removeTask}}>
       {children}
     </TaskContext.Provider>
   );
