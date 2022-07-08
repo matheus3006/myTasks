@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for Pages/Home/index.tsx</title>
+    <title>Code coverage report for pages/Home/index.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">Pages/Home</a> index.tsx</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/Home</a> index.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -170,12 +170,7 @@
 <a name='L105'></a><a href='#L105'>105</a>
 <a name='L106'></a><a href='#L106'>106</a>
 <a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a>
-<a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a>
-<a name='L112'></a><a href='#L112'>112</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L108'></a><a href='#L108'>108</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -194,6 +189,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -226,11 +222,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -288,50 +280,48 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import {
   Platform,
-  View,
   Text,
   TextInput,
   TouchableOpacity,
+  View,
   StyleSheet,
   SafeAreaView,
-  FlatList,
 } from 'react-native';
-import {TaskList} from '../../components/Tasks';
-import {useTaskList} from '../../Context/TaskContext';
+import {TaskList} from '../../components/TaskList';
+import {useTaskList} from '../../context/TasksContext';
 &nbsp;
 export const Home = () =&gt; {
   const [newTask, setNewTask] = React.useState('');
   const {addTask} = useTaskList();
 &nbsp;
-  const handleAddTask = () =&gt; {
+  const handleAddNewTask = () =&gt; {
     const data = {
       id: String(new Date().getTime()),
       title: newTask ? newTask : <span class="branch-1 cbranch-no" title="branch not covered" >'Task empty',</span>
     };
+&nbsp;
     addTask(data);
   };
 &nbsp;
   return (
     &lt;SafeAreaView style={styles.safeArea}&gt;
       &lt;View style={styles.container}&gt;
-        &lt;Text style={styles.title}&gt;Welcome Dev&lt;/Text&gt;
-&nbsp;
+        &lt;Text style={styles.title}&gt;Welcome, Dev!&lt;/Text&gt;
         &lt;TextInput
           onChangeText={setNewTask}
-          placeholderTextColor="#444"
-          placeholder="Nova Tarefa..."
+          placeholderTextColor="#555"
+          placeholder="Nova tarefa..."
           style={styles.input}
         /&gt;
         &lt;TouchableOpacity
           testID="addButton"
-          onPress={handleAddTask}
-          activeOpacity={0.8}
+          onPress={handleAddNewTask}
+          activeOpacity={0.7}
           style={styles.button}&gt;
-          &lt;Text style={styles.textButton}&gt;Adicionar&lt;/Text&gt;
+          &lt;Text style={styles.buttonText}&gt;Adicionar&lt;/Text&gt;
         &lt;/TouchableOpacity&gt;
 &nbsp;
-        &lt;Text style={styles.titleTasks}&gt; Minhas tarefas&lt;/Text&gt;
-        &lt;Text style={{color: '#fff'}}&gt;{newTask}&lt;/Text&gt;
+        &lt;Text style={styles.titleTasks}&gt;Minhas Tarefas&lt;/Text&gt;
 &nbsp;
         &lt;TaskList /&gt;
       &lt;/View&gt;
@@ -344,7 +334,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#121214',
   },
-&nbsp;
   container: {
     flex: 1,
     backgroundColor: '#121214',
@@ -377,12 +366,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
   },
-  textButton: {
+  buttonText: {
     color: '#121214',
     fontSize: 18,
     fontWeight: 'bold',
   },
-&nbsp;
   buttonTask: {
     backgroundColor: '#29292e',
     padding: 10,
@@ -402,9 +390,10 @@ const styles = StyleSheet.create({
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
-                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Jul 06 2022 07:28:03 GMT-0300 (Brasilia Standard Time)
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener">istanbul</a>
+                at Thu Jan 20 2022 03:00:08 GMT-0300 (Horário Padrão de Brasília)
             </div>
+        </div>
         <script src="../../prettify.js"></script>
         <script>
             window.onload = function () {

@@ -3,7 +3,7 @@ module.exports = {
   "setupFilesAfterEnv": [
     "@testing-library/jest-native/extend-expect"
   ],
-  "testPathIgnorePatters": [
+  testPathIgnorePatterns: [
     "/node_modules",
     "/android",
     "/ios"
@@ -17,10 +17,9 @@ module.exports = {
     "node"
   ],
   collectCoverage: true,
-  collectCoverageFrom:[
+  collectCoverageFrom: [
     "src/**/*.tsx",
     "!src/**/*.spec.tsx"
-    
   ],
-  covarageReportes:["lcov"]
+  coverageReporters: ["lcov"]
 }

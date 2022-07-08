@@ -2,47 +2,50 @@ import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
 import {renderHook, act} from '@testing-library/react-hooks';
 
-import {TaskProvider, useTaskList} from '../../src/Context/TaskContext';
-import {Home} from '../../src/Pages/Home';
+import {TasksProvider, useTaskList} from '../../src/context/TasksContext';
+import {Home} from '../../src/pages/Home';
 
 describe('Home page', () => {
-  test('renders correctly', () => {
+  it('renders correctly', () => {
     const {getByPlaceholderText} = render(<Home />);
 
-    const inputNewText = getByPlaceholderText('Nova Tarefa...');
+    const inputNewTask = getByPlaceholderText('Nova tarefa...');
 
-    expect(inputNewText).toBeDefined();
+    expect(inputNewTask).toBeDefined();
 
-    expect(inputNewText.props.placeholder).toBeTruthy();
+    expect(inputNewTask.props.placeholder).toBeTruthy();
   });
 
-  test('Verifica a insercao de um item na list de tarefa', async () => {
+  it('verifica a insercao de um item na lista de tarefas', async () => {
     const {result} = renderHook(() => useTaskList(), {
-      wrapper: TaskProvider,
+      wrapper: TasksProvider,
     });
 
     const data = {id: 'Task01', title: 'Task01'};
 
     await act(() => result.current.addTask(data));
+
     expect(result.current.tasks).toBeTruthy();
   });
 
-  test('Verifica se click no botao insere item na lista', async () => {
+  it('verifica se o clique no botao insere um item na lista de tarefas', async () => {
     const {getByPlaceholderText, getByTestId} = render(<Home />, {
-      wrapper: TaskProvider,
+      wrapper: TasksProvider,
     });
 
-    const inputNewText = getByPlaceholderText('Nova Tarefa...');
-    const buttonInput = getByTestId('addButton');
     const {result} = renderHook(() => useTaskList(), {
-      wrapper: TaskProvider,
+      wrapper: TasksProvider,
     });
+
+    const inputNewTask = getByPlaceholderText('Nova tarefa...');
+    const button = getByTestId('addButton');
 
     const data = {id: 'Task01', title: 'Task01'};
-    act(() => fireEvent.changeText(inputNewText, data.title));
+
+    act(() => fireEvent.changeText(inputNewTask, data.title));
 
     await act(async () => {
-      await fireEvent.press(buttonInput);
+      await fireEvent.press(button);
     });
 
     expect(result.current.tasks).toBeTruthy();

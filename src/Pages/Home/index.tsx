@@ -1,50 +1,48 @@
 import React from 'react';
 import {
   Platform,
-  View,
   Text,
   TextInput,
   TouchableOpacity,
+  View,
   StyleSheet,
   SafeAreaView,
-  FlatList,
 } from 'react-native';
-import {TaskList} from '../../components/Tasks';
-import {useTaskList} from '../../Context/TaskContext';
+import {TaskList} from '../../components/TaskList';
+import {useTaskList} from '../../context/TasksContext';
 
 export const Home = () => {
   const [newTask, setNewTask] = React.useState('');
   const {addTask} = useTaskList();
 
-  const handleAddTask = () => {
+  const handleAddNewTask = () => {
     const data = {
       id: String(new Date().getTime()),
       title: newTask ? newTask : 'Task empty',
     };
+
     addTask(data);
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <Text style={styles.title}>Welcome Dev</Text>
-
+        <Text style={styles.title}>Welcome, Dev!</Text>
         <TextInput
           onChangeText={setNewTask}
-          placeholderTextColor="#444"
-          placeholder="Nova Tarefa..."
+          placeholderTextColor="#555"
+          placeholder="Nova tarefa..."
           style={styles.input}
         />
         <TouchableOpacity
           testID="addButton"
-          onPress={handleAddTask}
-          activeOpacity={0.8}
+          onPress={handleAddNewTask}
+          activeOpacity={0.7}
           style={styles.button}>
-          <Text style={styles.textButton}>Adicionar</Text>
+          <Text style={styles.buttonText}>Adicionar</Text>
         </TouchableOpacity>
 
-        <Text style={styles.titleTasks}> Minhas tarefas</Text>
-        <Text style={{color: '#fff'}}>{newTask}</Text>
+        <Text style={styles.titleTasks}>Minhas Tarefas</Text>
 
         <TaskList />
       </View>
@@ -57,7 +55,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#121214',
   },
-
   container: {
     flex: 1,
     backgroundColor: '#121214',
@@ -90,12 +87,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
   },
-  textButton: {
+  buttonText: {
     color: '#121214',
     fontSize: 18,
     fontWeight: 'bold',
   },
-
   buttonTask: {
     backgroundColor: '#29292e',
     padding: 10,

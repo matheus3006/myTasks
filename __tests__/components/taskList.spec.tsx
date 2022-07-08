@@ -2,20 +2,23 @@ import React from 'react';
 import {fireEvent, render} from '@testing-library/react-native';
 import {renderHook, act} from '@testing-library/react-hooks';
 
-import {TaskProvider, useTaskList} from '../../src/Context/TaskContext';
-import {TaskList} from '../../src/components/Tasks';
+import {TasksProvider, useTaskList} from '../../src/context/TasksContext';
+import {TaskList} from '../../src/components/TaskList';
 
 describe('TaskList component', () => {
-  test('Verifica se um item da lista é removido', async () => {
+  it('verifica se um item é removido da lista de tarefas', async () => {
     render(<TaskList />, {
-      wrapper: TaskProvider,
+      wrapper: TasksProvider,
     });
+
     const {result} = renderHook(() => useTaskList(), {
-      wrapper: TaskProvider,
+      wrapper: TasksProvider,
     });
 
     const data = {id: 'Task01', title: 'Task01'};
+
     await act(() => result.current.addTask(data));
+
     expect(result.current.tasks[0].title).toEqual('Task01');
 
     await act(() => result.current.removeTask('Task01'));
